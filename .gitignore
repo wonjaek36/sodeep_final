@@ -2,3 +2,4 @@ venv
 resources
 __pycache__
 .DS_Store
+src/config.json
