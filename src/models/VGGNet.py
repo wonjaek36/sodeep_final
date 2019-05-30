@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 
 
-class VGGNet():
+class VGGNet:
 
 	def __init__(self):
 		self.config = config
@@ -45,7 +45,7 @@ class VGGNet():
 
 			# VGG 1 layer
 			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), input_shape=(width, height, channel), padding='same', name='Z1_1', activation='relu'),
-			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), name='Z1_2', padding='same', activation='relu', name='Z1_2'),
+			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1),  padding='same', activation='relu', name='Z1_2'),
 			tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)),
 
 			# VGG 2 layer

@@ -1,9 +1,13 @@
+import os
+import json
+import sys
+print (sys.path)
+print (sys.executable)
 from parser import Parser
 from models.VGGNet import VGGNet
-import os
+
 import numpy as np
 import tensorflow as tf
-import json
 
 class Main():
     
@@ -13,9 +17,9 @@ class Main():
 
     def parse_data(self): 
         
-        parser = Parser(config)
-        data, labels = parser.parsing()
-        data_shape, label_shape = parser.get_data_description()
+        data_parser = Parser(config)
+        data, labels = data_parser.parsing()
+        data_shape, label_shape = data_parser.get_data_description()
         self.data = data
         self.labels = labels
         self.data_shape = data_shape
@@ -64,8 +68,8 @@ class Main():
 
 
 if __name__ == "__main__":
-
     config = None
+    print (sys.path)
     with open(os.path.join('src', 'config.json'), 'r') as f:
         config = json.load(f)
 
@@ -76,4 +80,3 @@ if __name__ == "__main__":
         main.parse_data()
         main.train() 
         # main.test()
-        
