@@ -1,7 +1,7 @@
 {
 	"DEFAULT": {
-		"ROOT_PATH": "D:\\workspace\\sodeeps_final",
-		"RESOURCE_PATH": "D:\\workspace\\sodeeps_final"
+		"ROOT_PATH": "/Users/wonjaek36/workspace/sodeep_final",
+		"RESOURCE_PATH": "/Users/wonjaek36/workspace/sodeep_final"
 	},
 
 	"MODEL": {
@@ -12,7 +12,7 @@
 
 	"DATA": {
 		"base": {
-			"path": "D:\\workspace\\sodeeps_final\\resources\\base",
+			"path": "/Users/wonjaek36/workspace/sodeep_final/resources/base",
 			"output": 3,
 			"format": "pickle",
 			"width": 32,

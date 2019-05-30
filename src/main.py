@@ -51,19 +51,19 @@ class Main():
             
             # X, Y = model.create_placeholders(data_shape[0], data_shape[1], data_shape[2], output)
             # parameters = model.initialize_parameters()
-        model = model.create_keras_model(X, parameters)
+        model = model.create_keras_model()
         model.compile(
             optimizer='adam',
             loss='categorical_crossentropy',
-            metrics=['accuracy', 'loss'])
+            metrics=['accuracy'])
 
         model.summary()
 
-        model.fit(x_train, y_train,
+        """model.fit(x_train, y_train,
             batch_size=batch_size,
             epochs=epochs,
             validation_data=(x_test, y_test),
-            shuffle=True)
+            shuffle=True)"""
 
 
 
