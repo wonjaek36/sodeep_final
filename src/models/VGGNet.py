@@ -3,7 +3,7 @@ from tensorflow import keras
 import numpy as np
 
 
-class VGGNet(tf.keras.Model):
+class VGGNet():
 
 	def __init__(self):
 		self.config = config
@@ -31,12 +31,18 @@ class VGGNet(tf.keras.Model):
 		height = self.height
 		channel = self.channel
 		output = self.output
+		zero_padding = 3
 
-		conv2d_final_width = width // 2 // 2 // 2 // 2 // 2
-		conv2d_final_height = height // 2 // 2 // 2 // 2 // 2
+		conv2d_final_width = (width+2*zero_padding) // 2 // 2 // 2 // 2 // 2
+		conv2d_final_height = (height+2*zero_padding) // 2 // 2 // 2 // 2 // 2
 		flatten_neuron = conv2d_final_height*conv2d_final_width*512
 
+		# TODO
+		# Add kernel initializer "glorot_uniform"
 		model = tf.keras.Sequential([
+			# Zero padding 3
+			tf.keras.layers.ZeroPadding2D(padding=(zero_padding, zero_padding)),
+
 			# VGG 1 layer
 			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), input_shape=(width, height, channel), padding='same', name='Z1_1', activation='relu'),
 			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), name='Z1_2', padding='same', activation='relu', name='Z1_2'),
@@ -66,9 +72,9 @@ class VGGNet(tf.keras.Model):
 			tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)),
 
 			#VGG FC
-			tf.keras.layers.Flatten()
-			tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc1')
-			tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc2')
+			tf.keras.layers.Flatten(),
+			tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc1'),
+			tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc2'),
 			tf.keras.layers.Dense(output, activation='softmax', name='fc3')
 		])
 		

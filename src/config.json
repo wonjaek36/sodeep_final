@@ -6,7 +6,8 @@
 
 	"MODEL": {
 		"model": "VGGNet",
-		"data": "base"
+		"data": "base",
+		"batch_size": 32
 	},
 
 	"DATA": {
