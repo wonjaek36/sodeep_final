@@ -3,10 +3,44 @@
 		"ROOT_PATH": "/Users/wonjaek36/workspace/sodeep_final",
 		"RESOURCE_PATH": "/Users/wonjaek36/workspace/sodeep_final/resources"
 	},
+
 	"MODEL": {
-		"model": "VGGNET"
-		
+		"model": "VGGNet",
+		"data": "base"
 	},
+
+	"DATA": {
+		"base": {
+			"path": "/Users/wonjaek36/workspace/sodeep_final/resources/base",
+			"output": 3,
+			"format": "pickle",
+			"width": 32,
+			"height": 32,
+			"channel": 3
+		},
+		"cifar10": {
+			"path": "/Users/wonjaek36/workspace/sodeep_final/resources/cifar10",
+			"output": 10,
+			"format": "pickle",
+			"width": 32,
+			"height": 32,
+			"channel": 10
+		},
+		"cifar100": {
+			"path": "/Users/wonjaek36/workspace/sodeep_final/resources/cifar100",
+			"output": 100,
+			"format": "pickle",
+			"width": 32,
+			"height": 32,
+			"channel": 100
+		},
+		"intel": {
+			"path": "/Users/wonjaek36/workspace/sodeep_final/resources/intel",
+			"output": 6
+		}
+	},
+
+
 	"TRAIN": {
 		"epoch": 100,
 		"batch_size": 3000,
