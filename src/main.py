@@ -45,13 +45,15 @@ class Main():
         tf.reset_default_graph()
         with tf.Session() as sess:
             
-            X, Y = model.create_placeholders(data_shape[0], data_shape[1], data_shape[2], output)
-            parameters = model.initialize_parameters()
-            Z = model.forward_propagation(X, parameters)
-            init = tf.global_variables_initializer()
-            sess.run(init)
-            a = sess.run(Z, {X: np.random.randn(2,32,32,3), Y: np.random.randn(2,3)})
+            # X, Y = model.create_placeholders(data_shape[0], data_shape[1], data_shape[2], output)
+            # parameters = model.initialize_parameters()
+            model = model.create_keras_model(X, parameters)
+            model.compile(optimizer='adam',
+                loss='categorical_crossentropy',
+                metrics=['accuracy'])
 
+            model.summary()
+            
 
 
 if __name__ == "__main__":
