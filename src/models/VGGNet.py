@@ -1,10 +1,11 @@
 import tensorflow as tf
+from tensorflow import keras
 import numpy as np
 
 
-class VGGNet():
+class VGGNet(tf.keras.Model):
 
-	def __init__(self, config):
+	def __init__(self):
 		self.config = config
 
 	def create_placeholders(self, height, width, channel, output):
@@ -24,46 +25,42 @@ class VGGNet():
 
 		return X, Y
 
-	def initialize_parameters(self):
-
-		# ("W1", [4,4,3,8], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		# W1 = tf.get_variable("W1", [4,4,3,8], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W1_1 = tf.get_variable("W1_1", [3, 3, self.channel, 64], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W1_2 = tf.get_variable("W1_2", [3, 3,  64,  64], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W2_1 = tf.get_variable("W2_1", [3, 3,  64, 128], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W2_2 = tf.get_variable("W2_2", [3, 3, 128, 128], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W3_1 = tf.get_variable("W3_1", [3, 3, 128, 256], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W3_2 = tf.get_variable("W3_2", [3, 3, 256, 256], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W3_3 = tf.get_variable("W3_3", [3, 3, 256, 256], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W4_1 = tf.get_variable("W4_1", [3, 3, 256, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W4_2 = tf.get_variable("W4_2", [3, 3, 512, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W4_3 = tf.get_variable("W4_3", [3, 3, 512, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W5_1 = tf.get_variable("W5_1", [3, 3, 512, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W5_2 = tf.get_variable("W5_2", [3, 3, 512, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W5_3 = tf.get_variable("W5_3", [3, 3, 512, 512], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-
-		conv_width = self.width // 2 // 2 // 2 // 2 // 2
-		conv_height = self.height // 2 // 2 // 2 // 2 // 2
-		num_flatten = conv_width * conv_height * 512
-		output = self.output
-		W6   = tf.get_variable("W6", [num_flatten, num_flatten], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W7 	 = tf.get_variable("W7", [num_flatten, num_flatten], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
-		W8   = tf.get_variable("W8", [num_flatten, output])
-
-		parameters = {
-			'W1_1': W1_1, 'W1_2': W1_2,
-			'W2_1': W2_1, 'W2_2': W2_2,
-			'W3_1': W3_1, 'W3_2': W3_2, 'W3_3': W3_3,
-			'W4_1': W4_1, 'W4_2': W4_2, 'W4_3': W4_3,
-			'W5_1': W5_1, 'W5_2': W5_2, 'W5_3': W5_3,
-			'W6': W6, 'W7': W7, 'W8': W8		
-		}
-
-		return parameters
-
-
 	def forward_propagation(self, X, parameters, dropout=0):
 
+		width = self.width
+		height = self.height
+		channel = self.channel
+
+		model = tf.keras.Sequential([
+			# VGG 1 layer
+			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), input_shape=(width, height, channel), padding='same', name='Z1_1', activation='relu'),
+			tf.keras.layers.Conv2D(filter=64, kernel_size=(3,3), strides=(1,1), name='Z1_2', padding='same', activation='relu', name='Z1_2'),
+			tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)),
+
+			# VGG 2 layer
+			tf.keras.layers.Conv2D(filter=128, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z2_1'),
+			tf.keras.layers.Conv2D(filter=128, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z2_2'),
+			tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)),
+
+			# VGG 3 layer
+			tf.keras.layers.Conv2D(filter=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.Conv2D(filter=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2)),
+
+			# VGG 4 layer
+			tf.keras.layers.Conv2D(filter=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.Conv2D(filter=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)),
+
+			#VGG 5 layer
+			tf.keras.layers.Conv2D(filter=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.Conv2D(filter=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu'),
+			tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2)),
+
+			#VGG FC
+			tf.keras.layers.Flatten()
+			tf.keras.layers.Dense(4096, activation='relu', name='fc1')
+		])
 		W1_1 = parameters['W1_1']
 		W1_2 = parameters['W1_2']
 		W2_1 = parameters['W2_1']
