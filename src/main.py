@@ -1,8 +1,6 @@
 import os
 import json
 import sys
-print (sys.path)
-print (sys.executable)
 from parser import Parser
 from models.VGGNet import VGGNet
 
@@ -24,7 +22,7 @@ class Main():
         self.labels = labels
         self.data_shape = data_shape
         self.label_shape = label_shape
-
+        self.num_data = len(labels)
 
     def get_model(self):
         
@@ -59,11 +57,14 @@ class Main():
 
         model.summary()
 
-        """model.fit(x_train, y_train,
-            batch_size=batch_size,
-            epochs=epochs,
-            validation_data=(x_test, y_test),
-            shuffle=True)"""
+
+        x_train = self.data[0: int(self.num_data*0.7)]
+        y_train = self.labels[0: int(self.num_data*0.7)]
+        model.fit(x_train, y_train,
+            batch_size=32,
+            epochs=1,
+            #validation_data=(x_test, y_test),
+            shuffle=True)
 
 
 
