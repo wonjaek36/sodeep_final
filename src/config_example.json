@@ -3,7 +3,7 @@
 		"ROOT_PATH": "/Users/wonjaek36/workspace/sodeep_final",
 		"RESOURCE_PATH": "/Users/wonjaek36/workspace/sodeep_final"
 	},
-
+  
 	"MODEL": {
 		"model": "VGGNet",
 		"data": "base",
