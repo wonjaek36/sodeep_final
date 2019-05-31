@@ -4,6 +4,7 @@ import sys
 from parser import Parser
 from models.VGGNet import VGGNet
 from models.MobileNet import MobileNet
+from models.ResNet import ResNet
 from contextlib import redirect_stdout
 
 import numpy as np
@@ -37,8 +38,10 @@ class Main():
 
         if model_type == 'VGGNet':
             model = VGGNet(config)
-        if model_type == 'MobileNet':
+        elif model_type == 'MobileNet':
             model = MobileNet(config)
+        elif model_type == 'ResNet':
+            model = ResNet(config)
         else:
             model = None
 
