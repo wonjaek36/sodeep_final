@@ -116,12 +116,6 @@ class VGGNet:
             dropout3 = tf.keras.layers.Dropout(float(dropout3))
         else:
             dropout3 = None
-
-        # print (conv2d_final_width)
-        # TODO
-        # Add kernel initializer "glorot_uniform"
-
-        k_regularizer = tf.keras.regularizers.l2(l=0.01)
         
         # Initialize keras input
         inputs = tf.keras.layers.Input(shape=(width, height, channel))
