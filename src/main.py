@@ -7,6 +7,7 @@ from contextlib import redirect_stdout
 
 import numpy as np
 import tensorflow as tf
+import timeit
 
 class Main():
     
@@ -41,6 +42,7 @@ class Main():
 
     def train(self, options={}):
 
+        start = timeit.default_timer() 
         model = self.get_model()
 
         name = options.get("name", None)
@@ -52,6 +54,8 @@ class Main():
 
         if model is None:
             return
+
+        self.num_data = 20
 
         data_shape = self.data_shape
         output = self.label_shape
@@ -95,6 +99,14 @@ class Main():
                 shuffle=True,
                 callbacks = [cp_callback] )
             
+            stop = timeit.default_timer() 
+            with open(os.path.join(name, 'model_summary.txt'), 'a') as f:
+                f.write('\n')
+                f.write('Time: ')
+                f.write(str(stop - start))
+                f.write('\n')
+
+
             history = history.history # Getting history attributes from history instance
             history_filename = "history_" + name + ".txt"
             history_file = open(os.path.join(name, history_filename), 'w')
@@ -118,6 +130,8 @@ class Main():
                 validation_data=(x_valid, y_valid),
                 shuffle=True)
 
+            stop = timeit.default_timer() 
+            print ('Time: ' + str(stop-start))
             history = history.history # Getting history attributes from history instance
 
             print (history['acc'])
