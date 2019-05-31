@@ -144,10 +144,7 @@ class VGGNet:
         X = tf.keras.layers.Conv2D(filters=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z3_1', kernel_regularizer=regularizer3, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         X = tf.keras.layers.Conv2D(filters=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z3_2', kernel_regularizer=regularizer3, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         X = tf.keras.layers.Conv2D(filters=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z3_3', kernel_regularizer=regularizer3, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
-        if data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100':
-            X = tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(1, 1))(X)
-        else:
-            X = tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(X)
+        X = tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(X)
 
         # VGG 4 layer
         if data_type != 'base' and data_type != 'cifar10' and data_type != 'cifar100':
