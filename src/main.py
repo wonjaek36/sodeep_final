@@ -90,6 +90,7 @@ class Main():
             checkpoint_dir = os.path.dirname(checkpoint_path)
             cp_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path, 
                                                  save_weights_only=True,
+                                                 period=100,
                                                  verbose=1)
 
             history = model.fit(x_train, y_train,
@@ -104,7 +105,6 @@ class Main():
                 f.write('\n')
                 f.write('Time: ')
                 f.write(str(stop - start))
-                f.write('\n')
 
 
             history = history.history # Getting history attributes from history instance
