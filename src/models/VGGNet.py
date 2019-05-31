@@ -27,15 +27,25 @@ class VGGNet:
         return X, Y
 
     def create_keras_model(self, options={}):
+        config = self.config
 
+        data_type = config['MODEL']['data']
         width = self.width
         height = self.height
         channel = self.channel
         output = self.output
         zero_padding = 3
 
-        conv2d_final_width = (width+2*zero_padding) // 2 // 2 // 2 // 2 // 2
-        conv2d_final_height = (height+2*zero_padding) // 2 // 2 // 2 // 2 // 2
+        if data_type != 'base' and data_type != 'cifar10' and data_type != 'cifar100':
+            conv2d_final_width = (width+2*zero_padding) // 2 // 2 // 2 // 2 // 2
+        else:
+            conv2d_final_width = (width+2*zero_padding) // 2 // 2 // 2
+
+        if data_type != 'base' and data_type != 'cifar10' and data_type != 'cifar100':
+            conv2d_final_height = (height+2*zero_padding) // 2 // 2 // 2 // 2 // 2
+        else:
+            conv2d_final_height = (height+2*zero_padding) // 2 // 2 // 2
+
         flatten_neuron = conv2d_final_height*conv2d_final_width*512
         
         regularization1 = options.get('regularization1',None)
@@ -127,7 +137,8 @@ class VGGNet:
         # VGG 2 layer
         X = tf.keras.layers.Conv2D(filters=128, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z2_1', kernel_regularizer=regularizer2, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         X = tf.keras.layers.Conv2D(filters=128, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z2_2', kernel_regularizer=regularizer2, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
-        X = tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(X)
+        if data_type != 'base' and data_type != 'cifar10' and data_type != 'cifar100':
+            X = tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(X)
 
         # VGG 3 laye
         X = tf.keras.layers.Conv2D(filters=256, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z3_1', kernel_regularizer=regularizer3, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
@@ -139,7 +150,8 @@ class VGGNet:
         X = tf.keras.layers.Conv2D(filters=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z4_1', kernel_regularizer=regularizer4, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         X = tf.keras.layers.Conv2D(filters=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z4_2', kernel_regularizer=regularizer4, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         X = tf.keras.layers.Conv2D(filters=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z4_3', kernel_regularizer=regularizer4, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
-        X = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2))(X)
+        if data_type != 'base' and data_type != 'cifar10' and data_type != 'cifar100':
+            X = tf.keras.layers.MaxPooling2D(pool_size=(2,2), strides=(2,2))(X)
 
         #VGG 5 layer
         X = tf.keras.layers.Conv2D(filters=512, kernel_size=(3,3), strides=(1,1), padding='same', activation='relu', name='Z5_1', kernel_regularizer=regularizer5, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
