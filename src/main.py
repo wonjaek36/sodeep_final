@@ -8,6 +8,8 @@ from contextlib import redirect_stdout
 import numpy as np
 import tensorflow as tf
 import timeit
+import shutil
+
 
 class Main():
     
@@ -55,8 +57,6 @@ class Main():
         if model is None:
             return
 
-        self.num_data = 20
-
         data_shape = self.data_shape
         output = self.label_shape
         model = model.create_keras_model()
@@ -78,6 +78,10 @@ class Main():
         if name is not None: 
             # Create directory 
             name = "TEST_" + name
+
+            if os.path.exists(name):
+                name = name + "tmp"
+                
             if not os.path.exists(os.path.join('.', name)):
                 os.makedirs(os.path.join('.', name))
 
