@@ -3,6 +3,7 @@ import json
 import sys
 from parser import Parser
 from models.VGGNet import VGGNet
+from models.MobileNet import MobileNet
 from contextlib import redirect_stdout
 
 import numpy as np
@@ -36,6 +37,8 @@ class Main():
 
         if model_type == 'VGGNet':
             model = VGGNet(config)
+        if model_type == 'MobileNet':
+            model = MobileNet(config)
         else:
             model = None
 
@@ -81,7 +84,7 @@ class Main():
 
             if os.path.exists(name):
                 name = name + "tmp"
-                
+
             if not os.path.exists(os.path.join('.', name)):
                 os.makedirs(os.path.join('.', name))
 
@@ -128,6 +131,8 @@ class Main():
             
         if name is None:
             model.summary()
+
+            return 
             history = model.fit(x_train, y_train,
                 batch_size=batch_size,
                 epochs=epoch,
