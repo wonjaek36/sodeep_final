@@ -158,14 +158,15 @@ class VGGNet:
         X = tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc1', kernel_regularizer=regularizer6, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         if dropout1 is not None:
             X = dropout1(X)
-        X = tf.keras.layers.Activation(activatoin=tf.keras.activations.relu)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)
         X = tf.keras.layers.Dense(flatten_neuron, activation='relu', name='fc2', kernel_regularizer=regularizer7, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         if dropout2 is not None:
             X = dropout2(X)
-        X = tf.keras.layers.Activation(activatoin=tf.keras.activations.relu)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)
         X = tf.keras.layers.Dense(output, activation='softmax', name='fc3', kernel_regularizer=regularizer8, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
         if dropout3 is not None:
             X = dropout3(X)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.softmax)
 
         model = tf.keras.models.Model(inputs=inputs, outputs=X)
         
