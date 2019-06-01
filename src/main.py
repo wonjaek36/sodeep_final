@@ -162,7 +162,7 @@ class Main():
 
 if __name__ == "__main__":
     config = None
-    print (sys.path)
+    
     with open(os.path.join('src', 'config.json'), 'r') as f:
         config = json.load(f)
 
