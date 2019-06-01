@@ -121,10 +121,13 @@ class Parser():
 
         # TODO intel.pickle exists check
         if os.path.exists(os.path.join(data_path, 'intel1.pickle')):
-            pickle_file = os.path.join(data_path, 'intel1.pickle')
-            with open(pickle_file, 'rb') as f:
+            
+            pickle_file1 = os.path.join(data_path, 'intel1.pickle')
+            pickle_file2 = os.path.join(data_path, 'intel2.pickle')
+
+            with open(pickle_file1, 'rb') as f:
                 dic1 = pickle.load(f, encoding='bytes')
-            with open(pickle_file, 'rb') as f:
+            with open(pickle_file2, 'rb') as f:
                 dic2 = pickle.load(f, encoding='bytes')
 
             data1 = dic1['data']
@@ -134,10 +137,9 @@ class Parser():
             data = np.concatenate((data1, data2), axis=0)
             labels = np.concatenate((labels1, labels2), axis=0)
 
-            labels_t = np.zeros((len(labels), np.max(labels)+1))
-            labels_t[np.arange(len(labels_t)), labels] = 1
-            labels = labels_t
-
+            # labels_t = np.zeros((len(labels), int(np.max(labels))+1))
+            # labels_t[np.arange(len(labels_t)), labels] = 1
+            # labels = labels_t
             return data, labels
 
         data = []
@@ -178,7 +180,7 @@ class Parser():
         test_data, test_labels = self.get_intel_item(folders)
         data = np.concatenate((train_data, test_data), axis=0)
         labels = np.concatenate((train_labels, test_labels), axis=0)
-        labels_t = np.zeros((len(labels), np.max(labels)+1))
+        labels_t = np.zeros((len(labels), int(np.max(labels))+1))
         labels_t[np.arange(len(labels_t)), labels] = 1
         labels = labels_t
 
@@ -195,6 +197,8 @@ class Parser():
             'data': data[num_file1:],
             'labels': labels[num_file1:]
         }
+
+        print (dic2['labels'])
 
         with open(pickle_file1, 'wb') as f:
             pickle.dump(dic1, f)
@@ -219,6 +223,7 @@ class Parser():
         count = 0
 
         for idx, folder in enumerate(folders):
+            print (folder, idx)
             for item in os.listdir(folder):
                 img = imageio.open( os.path.join(folder, item))
 
@@ -231,10 +236,11 @@ class Parser():
                     img_np = np.asarray(img_list).reshape((150, 150, 3))
                     
                 data.append(img_np)
-                labels.append(idx)
+                labels.append(int(idx))
 
         print (len(data))
         print (len(labels))
+        print (np.max(labels))
         print ('ignored item: ' + str(count))
         return data, labels
 
