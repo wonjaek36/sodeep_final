@@ -239,7 +239,7 @@ class MobileNet():
             X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
 
         #MobileNet Average
-        X = tf.keras.layers.AveragePooling2D(pool_size=(2,2), strides=(1,1), padding='valid')(X)
+        X = tf.keras.layers.AveragePooling2D(pool_size=(4, 4), strides=(1,1), padding='valid')(X)
 
         # Fully Connected Layer
         X = tf.keras.layers.Flatten()(X)
