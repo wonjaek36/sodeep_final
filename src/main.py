@@ -5,6 +5,7 @@ from parser import Parser
 from models.VGGNet import VGGNet
 from models.MobileNet import MobileNet
 from models.ResNet import ResNet
+from models.InceptionV3 import InceptionV3
 from contextlib import redirect_stdout
 
 import numpy as np
@@ -42,6 +43,8 @@ class Main():
             model = MobileNet(config)
         elif model_type == 'ResNet':
             model = ResNet(config)
+        elif model_type == 'InceptionV3':
+            model = InceptionV3(config)
         else:
             model = None
 
