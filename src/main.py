@@ -138,7 +138,6 @@ class Main():
         if name is None:
             model.summary()
 
-            return 
             history = model.fit(x_train, y_train,
                 batch_size=batch_size,
                 epochs=epoch,
