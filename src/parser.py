@@ -134,6 +134,10 @@ class Parser():
             data = np.concatenate((data1, data2), axis=0)
             labels = np.concatenate((labels1, labels2), axis=0)
 
+            labels_t = np.zeros((len(labels), np.max(labels)+1))
+            labels_t[np.arange(len(labels_t)), labels] = 1
+            labels = labels_t
+
             return data, labels
 
         data = []
@@ -174,6 +178,9 @@ class Parser():
         test_data, test_labels = self.get_intel_item(folders)
         data = np.concatenate((train_data, test_data), axis=0)
         labels = np.concatenate((train_labels, test_labels), axis=0)
+        labels_t = np.zeros((len(labels), np.max(labels)+1))
+        labels_t[np.arange(len(labels_t)), labels] = 1
+        labels = labels_t
 
         pickle_file1 = os.path.join(data_path, 'intel1.pickle')
         pickle_file2 = os.path.join(data_path, 'intel2.pickle')
