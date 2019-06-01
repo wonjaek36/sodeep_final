@@ -107,7 +107,7 @@ class MobileNet():
 
 
         # MobileNet 7 layer- depthwise and pointwise layer
-        if not (data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100'):
+        if not (data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100' or data_type == 'intel'):
             X = tf.keras.layers.ZeroPadding2D(padding=(1, 1))(X)
             X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(2,2), padding='valid', name='Z7_1', activation='relu',
                 kernel_regularizer=regularizer7, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
@@ -177,19 +177,19 @@ class MobileNet():
         
         # ----
 
-        if data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100':
-            # MobileNet 12 layer- depthwise and pointwise layer
-            X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(1,1), padding='same', name='Z13_1', activation='relu',
-                kernel_regularizer=regularizer12, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
-            X = tf.keras.layers.BatchNormalization(axis=3)(X)
-            X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
+        
+        # MobileNet 12 layer- depthwise and pointwise layer
+        X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(1,1), padding='same', name='Z13_1', activation='relu',
+            kernel_regularizer=regularizer12, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
+        X = tf.keras.layers.BatchNormalization(axis=3)(X)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
 
-            X = tf.keras.layers.Conv2D(filters=512, kernel_size=(1,1), strides=(1,1), padding='same', name='Z13_2', activation='relu',
-                kernel_regularizer=regularizer12, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
-            X = tf.keras.layers.BatchNormalization(axis=3)(X)
-            X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
+        X = tf.keras.layers.Conv2D(filters=512, kernel_size=(1,1), strides=(1,1), padding='same', name='Z13_2', activation='relu',
+            kernel_regularizer=regularizer12, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
+        X = tf.keras.layers.BatchNormalization(axis=3)(X)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
 
-        else:
+        if not (data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100'):
             #MobileNet 13 layer
             X = tf.keras.layers.ZeroPadding2D(padding=(1, 1))(X)
             X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(2,2), padding='valid', name='Z13_1', activation='relu',
