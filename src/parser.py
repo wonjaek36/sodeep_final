@@ -289,4 +289,5 @@ if __name__ == "__main__":
 
         parser.parsing()
         parser.print_data_description()
+        parser.get_data_description()
         parser.showimg()

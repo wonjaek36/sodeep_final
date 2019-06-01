@@ -192,7 +192,7 @@ class MobileNet():
         elif data_type == 'intel':
             #MobileNet 13 layer
             X = tf.keras.layers.ZeroPadding2D(padding=(1, 1))(X)
-            X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(1,1), padding='valid', name='Z13_1', activation='relu',
+            X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(2,2), padding='valid', name='Z13_1', activation='relu',
                 kernel_regularizer=regularizer13, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
             X = tf.keras.layers.BatchNormalization(axis=3)(X)
             X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
