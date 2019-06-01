@@ -177,7 +177,7 @@ class MobileNet():
         
         # ----
 
-        if not (data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100'):
+        if (data_type == 'base' or data_type == 'cifar10' or data_type == 'cifar100'):
             # MobileNet 13 layer- depthwise and pointwise layer
             X = tf.keras.layers.DepthwiseConv2D(kernel_size=(3,3), strides=(1,1), padding='same', name='Z13_1', activation='relu',
                 kernel_regularizer=regularizer12, kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
@@ -239,7 +239,7 @@ class MobileNet():
             X = tf.keras.layers.Activation(activation=tf.keras.activations.relu)(X)
 
         #MobileNet Average
-        X = tf.keras.layers.AveragePooling2D(pool_size=(4,4), strides=(1,1), padding='valid')(X)
+        X = tf.keras.layers.AveragePooling2D(pool_size=(2,2), strides=(1,1), padding='valid')(X)
 
         # Fully Connected Layer
         X = tf.keras.layers.Flatten()(X)
