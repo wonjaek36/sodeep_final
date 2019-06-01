@@ -2,4 +2,5 @@ tensorflow == 1.13.1
 numpy
 matplotlib
 h5py
-pyyaml 
+pyyaml
+Pillow

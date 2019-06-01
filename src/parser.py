@@ -4,6 +4,8 @@ import os
 import json
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimage
+from PIL import Image as imageio
 
 class Parser():
 
@@ -16,7 +18,7 @@ class Parser():
         data_type = config['MODEL']['data']
         data_path = config['DATA'][data_type]['path']
         output_classes = config['DATA'][data_type]['output']
-        frmat = config['DATA'][data_type]['format']
+        # frmat = config['DATA'][data_type]['format']
 
         if data_type == 'base':
 
@@ -105,8 +107,129 @@ class Parser():
             self.labels = np.zeros((len(labels), np.max(labels)+1))
             self.labels[np.arange(len(labels)), labels] = 1
 
+        if data_type == 'intel':
+            self.data, self.labels = self.parse_intel(data_path)
+
         self.data = self.data / 255.
         return self.data, self.labels
+
+
+    def parse_intel(self, data_path):
+        '''
+            buildings: 0, forest: 1, glacier: 2, mountain: 3, sea: 4, street: 5
+        '''
+
+        # TODO intel.pickle exists check
+        if os.path.exists(os.path.join(data_path, 'intel1.pickle')):
+            pickle_file = os.path.join(data_path, 'intel1.pickle')
+            with open(pickle_file, 'rb') as f:
+                dic1 = pickle.load(f, encoding='bytes')
+            with open(pickle_file, 'rb') as f:
+                dic2 = pickle.load(f, encoding='bytes')
+
+            data1 = dic1['data']
+            labels1 = dic1['labels']
+            data2 = dic2['data']
+            labels2 = dic2['labels']
+            data = np.concatenate((data1, data2), axis=0)
+            labels = np.concatenate((labels1, labels2), axis=0)
+
+            return data, labels
+
+        data = []
+        labels = []
+        train_folder        = os.path.join(data_path, 'seg_train')
+        buliding_folder     = os.path.join(train_folder, 'buildings')
+        forest_folder       = os.path.join(train_folder, 'forest')
+        glacier_folder      = os.path.join(train_folder, 'glacier')
+        mountain_folder     = os.path.join(train_folder, 'mountain')
+        sea_folder          = os.path.join(train_folder, 'sea')
+        street_folder       = os.path.join(train_folder, 'street')
+
+        folders = {
+            'building': buliding_folder,
+            'forest': forest_folder,
+            'glacier': glacier_folder,
+            'mountain': mountain_folder,
+            'sea': sea_folder,
+            'street': street_folder
+        }
+        train_data, train_labels = self.get_intel_item(folders)
+
+        test_folder         = os.path.join(data_path, 'seg_test')
+        building_folder     = os.path.join(test_folder, 'buildings')
+        forest_folder       = os.path.join(test_folder, 'forest')
+        glacier_folder      = os.path.join(test_folder, 'glacier')
+        mountain_folder     = os.path.join(test_folder, 'mountain')
+        sea_folder          = os.path.join(test_folder, 'sea')
+        street_folder       = os.path.join(test_folder, 'street')
+        folders = {
+            'building': building_folder,
+            'forest': forest_folder,
+            'glacier': glacier_folder,
+            'mountain': mountain_folder,
+            'sea': sea_folder,
+            'street': street_folder
+        }
+        test_data, test_labels = self.get_intel_item(folders)
+        data = np.concatenate((train_data, test_data), axis=0)
+        labels = np.concatenate((train_labels, test_labels), axis=0)
+
+        pickle_file1 = os.path.join(data_path, 'intel1.pickle')
+        pickle_file2 = os.path.join(data_path, 'intel2.pickle')
+        num_file1 = len(data) // 2
+        num_file2 = len(data) - num_file1
+
+        dic1 = {
+            'data': data[:num_file1],
+            'labels': labels[:num_file1]
+        }
+        dic2 = {
+            'data': data[num_file1:],
+            'labels': labels[num_file1:]
+        }
+
+        with open(pickle_file1, 'wb') as f:
+            pickle.dump(dic1, f)
+        with open(pickle_file2, 'wb') as f:
+            pickle.dump(dic2, f)
+
+        return data, labels
+
+
+    def get_intel_item(self, folders):
+
+        building    = folders['building']
+        forest      = folders['forest']
+        glacier     = folders['glacier']
+        mountain    = folders['mountain']
+        sea         = folders['sea']
+        street      = folders['street']
+
+        folders = [building, forest, glacier, mountain, sea, street]
+        data = []
+        labels = []
+        count = 0
+
+        for idx, folder in enumerate(folders):
+            for item in os.listdir(folder):
+                img = imageio.open( os.path.join(folder, item))
+
+                try:
+                    img_list = list(img.getdata())
+                    img_np = np.asarray(img_list).reshape((150, 150, 3))
+                except:
+                    img = img.resize((150, 150))
+                    img_list = list(img.getdata())
+                    img_np = np.asarray(img_list).reshape((150, 150, 3))
+                    
+                data.append(img_np)
+                labels.append(idx)
+
+        print (len(data))
+        print (len(labels))
+        print ('ignored item: ' + str(count))
+        return data, labels
 
     def get_data_description(self):
         data = self.data 
@@ -135,7 +258,7 @@ class Parser():
 
     def showimg(self):
         img = self.data[0]
-
+        print (img.shape)
         plt.imshow(img)
         plt.show()
 
