@@ -234,6 +234,11 @@ class InceptionV3():
         branchap = self.conv2d_bn(branchap, filters=192, kernel_size=(1, 1))
         X = tf.keras.layers.Concatenate(axis=3)([branch11, branch33, branch33d, branchap])
 
+        X = tf.keras.layers.Flatten()(X)
+        X = tf.keras.layers.Dense(output, activation='relu', name='fc1',
+            kernel_initializer=tf.initializers.glorot_uniform(), bias_initializer=tf.initializers.zeros())(X)
+        X = tf.keras.layers.Activation(activation=tf.keras.activations.softmax)(X)
+        
         model = tf.keras.models.Model(inputs=inputs, outputs=X)
 
         return model
