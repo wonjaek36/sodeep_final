@@ -52,9 +52,9 @@ for test in test_set:
 		if name is None:
 			continue
 
-	if test_model == "MobileNet":
+	if test_model == "MobileNet" or test_model == 'ResNet':
 
-		print ("test_model: ", "MobileNet")
+		print ("test_model: ", test_model)
 		learning_rate 		= test["learning_rate"]
 		batch_size 			= test["batch_size"]
 		epoch 				= test["epoch"]
