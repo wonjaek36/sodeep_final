@@ -79,10 +79,18 @@ class Main():
         numTrain = int(self.num_data * ratio_train)
         numValid = self.num_data - numTrain
 
-        x_train = self.data[0:numTrain]
-        y_train = self.labels[0:numTrain]
-        x_valid = self.data[numTrain:]
-        y_valid = self.labels[numTrain:]
+        
+        # Shuffling data
+        idx = np.arange(self.num_data)
+        np.random.shuffle(idx)
+        data = self.data[idx]
+        labels = self.labels[idx]
+
+        x_train = data[0:numTrain]
+        y_train = labels[0:numTrain]
+        x_valid = data[numTrain:]
+        y_valid = labels[numTrain:]
+
 
         if name is not None: 
             # Create directory 
