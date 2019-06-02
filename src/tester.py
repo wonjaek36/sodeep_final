@@ -52,7 +52,7 @@ for test in test_set:
 		if name is None:
 			continue
 
-	if test_model == "MobileNet" or test_model == 'ResNet':
+	if test_model == "MobileNet" or test_model == 'ResNet' or test_model == 'InceptionV3':
 
 		print ("test_model: ", test_model)
 		learning_rate 		= test["learning_rate"]
