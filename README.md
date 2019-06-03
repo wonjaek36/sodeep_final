@@ -2,13 +2,13 @@
 
 ### Introduction
 ----------------
-
-
+Convolutional neural network is a key architure to recognize and classify the image to classes. However, variation of convolutional neural networks are very many and very vary their space/time usage for learning.  
+In this project, I compared the state-of-art convolutional neural networks and compared them based on **Performance** and **Resources**(space/time). Through this project, it helps to decide the model to solve problem based on problem size and limitation of resources.  
 
 ### Goal
 --------
 Compare four **Models**(*MobileNet v1*, *VGGNet-16*, *ResNet-50*, *InceptionV3*) in four **Datasets**(*cifar3*, *cifar10*, *cifar100*, *Intel*)  
-for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources**(*# of parameters*, *learning time*, *# of epoch*)
+for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources**(*# of parameters*, *learning time*)
 
 ### Experiment
 
@@ -45,8 +45,6 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 #### Hyper-parameters for each Model
 * Epoch
 * Batch-size
-
-### Concolusion
 
 ### References
 [1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
