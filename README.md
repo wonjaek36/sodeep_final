@@ -11,6 +11,7 @@ Compare four **Models**(*MobileNet v1*, *VGGNet-16*, *ResNet-50*, *InceptionV3*)
 for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources**(*# of parameters*, *learning time*)
 
 ### Experiment
+--------------
 
 #### Models
 * [MobileNet v1](https://arxiv.org/pdf/1704.04861.pdf)
@@ -47,6 +48,7 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 * Batch-size
 
 ### References
+--------------
 [1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
 [2] [Very Deep Convolutional Networks For Large-Scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)  
 [3] [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385.pdf)  
