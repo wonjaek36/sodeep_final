@@ -19,17 +19,30 @@
 
 #### Data
 * [Cifar 3](https://coursys.sfu.ca/2019sp-cmpt-880-g1/pages/Homework2_data.zip)
-* [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)
-* [Cifar 100](https://www.cs.toronto.edu/~kriz/cifar.html)
-* [Intel classification image](https://www.kaggle.com/puneet6060/intel-image-classification)
+  * 32 x 32 x 3 (Width, Height, RGB-Channel)
+  * Output classes 3 (Cat, Dog, Frog)
 
-#### Hyper-parameters
+* [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)
+  * 32 x 32 x 3 (Width, Height, RGB-Channel)
+  * Output classes 10 (Airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck)
+
+* [Cifar 100](https://www.cs.toronto.edu/~kriz/cifar.html)
+  * 32 x 32 x 3 (Width, Height, RGB-Channel)
+  * Output classes 100 (too many, check in the page)
+
+* [Intel classification image](https://www.kaggle.com/puneet6060/intel-image-classification)
+  * 150 x 150 x 3 (Width, Height, RGB-Channel), However, a few images(~10) are not 150 x 150 
+  * Output classes 6 (buildings, forest, glacier, mountain, sea, street)
+
+
+#### Hyper-parameters for each Model
 * Epoch
 * Batch-size
 
 
-
 ### References
-[1] 
-[2] 
-[3] 
+[1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
+[2] [Very Deep Convolutional Networks For Large-Scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)  
+[3] [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385.pdf)  
+[4] [Rethinking the Inception Architecture for Computer Vision](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)  
+[5] [Going deeper with convolutions](https://arxiv.org/pdf/1409.4842.pdf)  
