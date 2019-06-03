@@ -19,15 +19,16 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 #### Models
 * [MobileNet v1](https://arxiv.org/pdf/1704.04861.pdf)
   * [arXiv](https://arxiv.org/abs/1704.04861)
-  * [Simple explanation](https://deepmi.me/deeplearning/74/)
+  * [네이버블로그 - CNN 아키텍쳐 리뷰 (MobileNet)](https://deepmi.me/deeplearning/74/)
 * [VGGNet-16](https://arxiv.org/pdf/1409.1556.pdf)
   * [arXiv](https://arxiv.org/abs/1409.1556)
-  * [Simple explanation](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=220738560542&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+  * [[Part V. Best CNN Architecture] 6. VGGNet [1] - 라온피플 머신러닝 아카데미 -](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=220738560542&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
 * [ResNet-50](https://arxiv.org/pdf/1512.03385.pdf)
   * [arXiv](https://arxiv.org/abs/1512.03385)
-  * [Simple explanation](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=221259295035&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+  * [네이버블로그 - CNN 구조3 - VGGNet, ResNet](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=221259295035&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
 * [InceptionV3](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)
   * [InceptionV1](https://arxiv.org/pdf/1409.4842.pdf)
+  * [Review: Inception-v3 -- 1st Runner Up(Image Classification) in ILSVRC 2015](https://medium.com/@sh.tsang/review-inception-v3-1st-runner-up-image-classification-in-ilsvrc-2015-17915421f77c)
 
 #### Data
 * [Cifar 3](https://coursys.sfu.ca/2019sp-cmpt-880-g1/pages/Homework2_data.zip)
@@ -59,3 +60,7 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 [4] [Rethinking the Inception Architecture for Computer Vision](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)  
 [5] [Going deeper with convolutions](https://arxiv.org/pdf/1409.4842.pdf)  
 [6] [Cimon Farser University CMPT 880 G1](https://coursys.sfu.ca/2019sp-cmpt-880-g1/pages/)
+[7] [Review: Inception-v3 -- 1st Runner Up(Image Classification) in ILSVRC 2015](https://medium.com/@sh.tsang/review-inception-v3-1st-runner-up-image-classification-in-ilsvrc-2015-17915421f77c)  
+[8] [네이버블로그 - CNN 아키텍쳐 리뷰 (MobileNet)](https://deepmi.me/deeplearning/74/)  
+[9] [네이버블로그 - CNN 구조3 - VGGNet, ResNet](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=221259295035&proxyReferer=https%3A%2F%2Fwww.google.com%2F)  
+[10] [[Part V. Best CNN Architecture] 6. VGGNet [1] - 라온피플 머신러닝 아카데미 -](https://m.blog.naver.com/PostView.nhn?blogId=laonple&logNo=220738560542&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
