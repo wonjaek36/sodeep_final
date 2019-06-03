@@ -3,6 +3,12 @@
 ### Introduction
 
 
+For sodeep's final project
+
+### Goal
+Run and compare four models(MobileNet v1, VGGNet-16, ResNet-50, InceptionV3) in four data-set(cifar3, cifar10, cifar100, Intel) for performance(Training Accuracy, Validation Accuracy) and Resources(# of parameters, Learning time, # of epoch)
+
+### Experiment
 
 #### Models
 * [MobileNet v1](https://arxiv.org/pdf/1704.04861.pdf)
@@ -34,11 +40,11 @@
   * 150 x 150 x 3 (Width, Height, RGB-Channel), However, a few images(~10) are not 150 x 150 
   * Output classes 6 (buildings, forest, glacier, mountain, sea, street)
 
-
 #### Hyper-parameters for each Model
 * Epoch
 * Batch-size
 
+### Concolusion
 
 ### References
 [1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
@@ -46,3 +52,4 @@
 [3] [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385.pdf)  
 [4] [Rethinking the Inception Architecture for Computer Vision](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)  
 [5] [Going deeper with convolutions](https://arxiv.org/pdf/1409.4842.pdf)  
+[6] [Cimon Farser University CMPT 880 G1](https://coursys.sfu.ca/2019sp-cmpt-880-g1/pages/)
