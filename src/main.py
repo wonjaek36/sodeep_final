@@ -86,10 +86,12 @@ class Main():
         data = self.data[idx]
         labels = self.labels[idx]
 
-        x_train = data[0:numTrain]
-        y_train = labels[0:numTrain]
-        x_valid = data[numTrain:]
-        y_valid = labels[numTrain:]
+	x_train = data
+	y_train = labels
+        #x_train = data[0:numTrain]
+        #y_train = labels[0:numTrain]
+        #x_valid = data[numTrain:]
+        #y_valid = labels[numTrain:]
 
 
         if name is not None: 
@@ -117,7 +119,7 @@ class Main():
             history = model.fit(x_train, y_train,
                 batch_size=batch_size,
                 epochs=epoch,
-                validation_data=(x_valid, y_valid),
+		validation_split=0.3,
                 shuffle=True,
                 callbacks = [cp_callback] )
             
