@@ -32,10 +32,12 @@ class Main():
         self.label_shape = label_shape
         self.num_data = len(labels)
 
-    def get_model(self):
+    def get_model(self, model_type=None):
         
         config = self.config
-        model_type = config['MODEL']['model']
+
+        if model is None:
+            model_type = config['MODEL']['model']
 
         if model_type == 'VGGNet':
             model = VGGNet(config)
@@ -62,7 +64,8 @@ class Main():
         learning_rate = options.get("learning_rate", 0.0001)
         ratio_train = options.get("train", 0.7)
         ratio_valid = options.get("valid", 0.3)
-        model = options.get("model", self.get_model())
+        model_type = options.get("model", None)
+        model = self.get_model(model_type)
 
         if model is None:
             return
@@ -87,8 +90,8 @@ class Main():
         data = self.data[idx]
         labels = self.labels[idx]
 
-	x_train = data
-	y_train = labels
+        x_train = data
+        y_train = labels
         #x_train = data[0:numTrain]
         #y_train = labels[0:numTrain]
         #x_valid = data[numTrain:]
@@ -120,7 +123,7 @@ class Main():
             history = model.fit(x_train, y_train,
                 batch_size=batch_size,
                 epochs=epoch,
-		validation_split=0.3,
+                validation_split=0.3,
                 shuffle=True,
                 callbacks = [cp_callback] )
             
