@@ -1,17 +1,20 @@
 ## Sodeep's Final Project
 
-### Introduction
 ----------------
+
+### Introduction
 Convolutional neural network is a key architure to recognize and classify the image to classes. However, variation of convolutional neural networks are very many and very vary their space/time usage for learning.  
 In this project, I compared the state-of-art convolutional neural networks and compared them based on **Performance** and **Resources**(space/time). Through this project, it helps to decide the model to solve problem based on problem size and limitation of resources.  
 
-### Goal
 --------
+
+### Goal
 Compare four **Models**(*MobileNet v1*, *VGGNet-16*, *ResNet-50*, *InceptionV3*) in four **Datasets**(*cifar3*, *cifar10*, *cifar100*, *Intel*)  
 for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources**(*# of parameters*, *learning time*)
 
-### Experiment
 --------------
+
+### Experiment
 
 #### Models
 * [MobileNet v1](https://arxiv.org/pdf/1704.04861.pdf)
@@ -47,8 +50,9 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 * Epoch
 * Batch-size
 
-### References
 --------------
+
+### References
 [1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
 [2] [Very Deep Convolutional Networks For Large-Scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)  
 [3] [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385.pdf)  
