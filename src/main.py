@@ -36,7 +36,7 @@ class Main():
         
         config = self.config
 
-        if model is None:
+        if model_type is None:
             model_type = config['MODEL']['model']
 
         if model_type == 'VGGNet':
