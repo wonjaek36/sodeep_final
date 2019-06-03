@@ -54,7 +54,7 @@ class Main():
     def train(self, options={}):
 
         start = timeit.default_timer() 
-        model = self.get_model()
+        # model = self.get_model()
 
         name = options.get("name", None)
         epoch = options.get("epoch", 1000)
@@ -62,6 +62,7 @@ class Main():
         learning_rate = options.get("learning_rate", 0.0001)
         ratio_train = options.get("train", 0.7)
         ratio_valid = options.get("valid", 0.3)
+        model = options.get("model", self.get_model())
 
         if model is None:
             return

@@ -32,6 +32,7 @@ for test in test_set:
         name                = test.get("name", None)
 
         options = {
+            "model"                 :test_model,
             "learning_rate"         :learning_rate  ,
             "batch_size"            :batch_size     ,
             "epoch"                 :epoch          ,
@@ -61,6 +62,7 @@ for test in test_set:
         name                = test.get("name", None)
 
         options = {
+            "model"                 :test_model,
             "learning_rate"         :learning_rate  ,
             "batch_size"            :batch_size     ,
             "epoch"                 :epoch          ,
@@ -76,6 +78,7 @@ for test in test_set:
         name                = test.get("name", None)
 
         options = {
+            "model"                 :test_model,
             "learning_rate"         :learning_rate  ,
             "batch_size"            :batch_size     ,
             "epoch"                 :epoch          ,
@@ -92,6 +95,7 @@ for test in test_set:
         name                = test.get("name", None)
 
         options = {
+            "model"                 :test_model,
             "learning_rate"         :learning_rate  ,
             "batch_size"            :batch_size     ,
             "epoch"                 :epoch          ,
