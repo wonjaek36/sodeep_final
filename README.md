@@ -1,12 +1,16 @@
 ## Sodeep's final project
+=========================
 
 ### Introduction
+----------------
 
 
 For sodeep's final project
 
 ### Goal
-Run and compare four models(MobileNet v1, VGGNet-16, ResNet-50, InceptionV3) in four data-set(cifar3, cifar10, cifar100, Intel) for performance(Training Accuracy, Validation Accuracy) and Resources(# of parameters, Learning time, # of epoch)
+--------
+Run and compare four **models**(*MobileNet v1*, *VGGNet-16*, *ResNet-50*, *InceptionV3*) in four **data-set**(*cifar3*, *cifar10*, *cifar100*, *Intel*)  
+for **performance**(*Training Accuracy*, *Validation Accuracy*) and **resources**(*# of parameters*, *learning time*, *# of epoch*)
 
 ### Experiment
 
