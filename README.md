@@ -53,23 +53,6 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
 
 --------------
 
-### Conclusion
-
-#### Experiment 1
-* Learning rate
-| Learning rate/Model | VGGNet-16 | ResNet-50 | Inception V3 | MobileNet V1 |
-|---------------------|-----------|-----------|--------------|--------------|
-|0.00001| 0.97297 / 0.71638 | 0.484285 / 0.461666 | 0.79690 / 0.574166 | 0.863214 / 0.408888 |
-|0.00003| 0.97678 / 0.73611 | 0.523690 / 0.459722 | 0.79738 / 0.60472 | 0.79738 / 0.60472 |
-|0.0001| 0.978214 / 0.731666 | 0.398690 / 0.403055 | 0.398690 / 0.403055 | 0.996666 / 0.455555 |
-|0.0003| 0.39952 / 0.401111 | 0.398690 / 0.403055 | 0.398690 / 0.403055 | 0.996547 / 0.521666 |
-
-#### Experiment 2
-* Batch size
-
-
---------------
-
 ### References
 [1] [MobileNet: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)  
 [2] [Very Deep Convolutional Networks For Large-Scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)  
