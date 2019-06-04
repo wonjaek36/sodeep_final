@@ -48,8 +48,25 @@ for **Performance**(*Training Accuracy*, *Validation Accuracy*) and **Resources*
   * Output classes 6 (buildings, forest, glacier, mountain, sea, street)
 
 #### Hyper-parameters for each Model
-* Epoch
+* Learning rate
 * Batch-size
+
+--------------
+
+### Conclusion
+
+#### Experiment 1
+* Learning rate
+|Learning rate/Model|VGGNet-16|ResNet-50|Inception V3|MobileNet V1|
+|---|---|---|---|---|
+|0.00001|0.97297 / 0.71638|0.484285 / 0.461666|0.79690 / 0.574166|0.863214 / 0.408888|
+|0.00003|0.97678 / 0.73611|0.523690 / 0.459722|0.79738 / 0.60472|0.79738 / 0.60472|
+|0.0001|0.978214 / 0.731666|0.398690 / 0.403055|0.398690 / 0.403055|0.996666 / 0.455555|
+|0.0003|0.39952 / 0.401111|0.398690 / 0.403055|0.398690 / 0.403055|0.996547 / 0.521666|
+
+#### Experiment 2
+* Batch size
+
 
 --------------
 
